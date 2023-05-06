@@ -12,7 +12,7 @@ const register = async (req, res) => {
       email: user.email
       ,lastName:user.lastName,
       location:user.location,
-      name:user.mame,
+      name:user.name,
       token,
     },
     })
@@ -40,7 +40,7 @@ const login = async (req, res) => {
       email: user.email
       ,lastName:user.lastName,
       location:user.location,
-      name:user,
+      name:user.name,
       token,
     },
     })
@@ -48,6 +48,7 @@ const login = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { email, name, lastName, location } = req.body;
+  
   if (!email || !name || !lastName || !location) {
     throw new BadRequestError('Please provide all values');
   }

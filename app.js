@@ -47,6 +47,10 @@ app.get('*',(req,res)=>{
 })
 
 
+app.set('trust proxy', 1);
+
+app.use(express.static(path.resolve(__dirname, './client/build')));
+
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 

@@ -12,13 +12,15 @@ const auth = async (req, res, next) => {
   const token = authHeader.split(' ')[1]
 
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET)
-    // attach the user to the job routes
-    req.user = { userId: payload.userId, name: payload.name }
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const testUser = payload.userId === '62eff8bcdb9af70b4155349d';
+    req.user = { userId: payload.userId, testUser };
     next()
   } catch (error) {
     throw new UnauthenticatedError('Authentication invalid')
   }
 }
+
+
 
 module.exports = auth
